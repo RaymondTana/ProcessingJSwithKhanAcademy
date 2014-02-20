@@ -1,5 +1,7 @@
-//Say you have all of your points in this array called "track"
+//Say you have all of your points in this array called "track", and then two arrays of segments and faces
 var track = [];
+var segments = []; //segments will contain elements in the form [n0, n1], where n1 and n2 refer to elements in track[]
+var faces = []; //faces will contain elements in the form [n0, n1, n2, n3], where each refers to an element in track[]
 
 
 //On Khanacademy you need to translate by 200 for x and y to center the screen at (0,0)
