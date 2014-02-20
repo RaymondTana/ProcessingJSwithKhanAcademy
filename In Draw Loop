@@ -1,0 +1,78 @@
+//Already have defined the track[], rotateX3D(), rotateY3D(), and the mouseDragged()
+
+
+var draw = function() {
+    
+    //optional background
+    /*
+    for(var bg = 0; bg <= 400; bg ++){
+        stroke(225 - bg/2, 225 - bg/20, 171);
+        line(-200, bg - 200, 200, bg-200);
+    }
+    */
+    
+    
+    
+    //drawing segments
+    for(var s = 0; s < segments.length; s++){
+        
+        var l = segments[s]; //in the form [n1, n2]
+        
+        var n0 = l[0]; 
+        var n1 = l[1];
+        
+        strokeWeight(3);
+        stroke(145, 86, 5);
+        
+        //creates a line between the track[n1] and track[n2], using each's respective (x,y) coordinates
+        line(track[n0][0], track[n0][1], track[n1][0], track[n1][1]);
+        
+    }
+    
+    //drawing points
+    for(var i = 0; i < track.length; i++){
+    
+        var node = track[i]; //in the form [x, y, z]
+        strokeWeight(4); 
+        stroke(222, 219, 222);
+        
+        //draw the point at [x, y]... excluding z
+        point(node[0], node[1]);
+        
+        
+    }
+    
+    //drawing the faces
+    for(var f = 0; f < faces.length; f++){
+        
+            var faceColor;
+            
+            var face = faces[f]; //in the form [n0, n1, n2, n3]
+            
+            //numbers for the points
+            var n0 = face[0];
+            var n1 = face[1];
+            var n2 = face[2];
+            var n3 = face[3];
+            
+            //uses those numbers to access actual nodes. all in the form [x, y, z]
+            var v0 = track[n0];
+            var v1 = track[n1];
+            var v2 = track[n2];
+            var v3 = track[n3];
+            
+            //colors
+            noStroke();
+            //set faceColor equal to something here... I recommend adding in a 4th parameter for transparancy 
+            faceColor = color(255, 0, 0, 100);
+            fill(faceColor);
+            
+            //make a rectangle from the x and y of each corner
+            quad(v0[0], v0[1], v1[0], v1[1], v2[0], v2[1], v3[0], v3[1]); 
+            //This quadrilateral is made in this specific order, so make sure to order your faces in the same order
+        
+    }
+    
+    
+    
+};
